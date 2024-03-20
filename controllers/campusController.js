@@ -1,10 +1,10 @@
-const Campus = require("../models/Campus.js");
+const Campi = require("../models/Campus.js");
 
-const criarCampi = async (req, res) => {
+const criarCampus = async (req, res) => {
     try {
-        const { nome_campi, image_url } = req.body;
-        await Campus.create({ nome_campi, image_url  });
-        res.json('Campi registado');
+        const { nome_campus, image_url } = req.body;
+        await Campi.create({ nome_campus, image_url  });
+        res.json('Campus registado');
     } catch (error) {
         console.error(`Error: ${error}`);
         res.status(500).json({ message: 'Ocorreu erro ao registrar' });
@@ -14,22 +14,22 @@ const criarCampi = async (req, res) => {
 const criarCampusAquidauana = async (req, res) => {
     try {
         const campus = {
-            nome_campi: "Campus Aquidauana",
+            nome_campus: "Campus Aquidauana",
             image_url:"https://www.ifms.edu.br/imagens/imagens-noticias/abraco-pela-educacao/img_5497.jpg"
         }
-        await Campus.create(campus);
-        res.json('Campi registado');
+        await Campi.create(campus);
+        res.json('Campus registado');
     } catch (error) {
         console.error(`Error: ${error}`);
         res.status(500).json({ message: 'Ocorreu erro ao registrar' });
     }
 };
 
-const buscarCampi = async (req, res) => {
+const buscarCampus = async (req, res) => {
     try {
-        const campi = await Campus.findOne({ where: { id: parseInt(req.params.id) } });
-        if (campi) {
-            return res.json(campi);
+        const campus = await Campi.findOne({ where: { id: parseInt(req.params.id) } });
+        if (campus) {
+            return res.json(campus);
         } else {
             res.status(404).json({ message: 'Campi not found' });
         }
@@ -39,9 +39,9 @@ const buscarCampi = async (req, res) => {
     }
 };
 
-const buscarCampus = async (req, res) => {
+const buscarCampi = async (req, res) => {
     try {
-        const campi = await Campus.findAll();
+        const campi = await Campi.findAll();
         res.json(campi);
     } catch (error) {
         console.error(`Error: ${error}`);
@@ -49,21 +49,21 @@ const buscarCampus = async (req, res) => {
     }
 };
 
-const deletarCampi = async (req, res) => {
+const deletarCampus = async (req, res) => {
     try {
-        await Campus.destroy({ where: { id: parseInt(req.params.id) } });
-        res.json('Campi removido!');
+        await Campi.destroy({ where: { id: parseInt(req.params.id) } });
+        res.json('Campus removido!');
     } catch (error) {
         console.error(`Error: ${error}`);
-        res.status(500).json({ message: 'Erro ao remover Campi' });
+        res.status(500).json({ message: 'Erro ao remover Campus' });
     }
 };
 
-const atualizarCampi = async (req, res) => {
-    const { nome_campi, imagem_url } = req.body;
+const atualizarCampus = async (req, res) => {
+    const { nome_campus, imagem_url } = req.body;
     try {
-        await Campus.update({ nome_campi, imagem_url  }, { where: { id: parseInt(req.params.id) } });
-        res.json('Campi atualizando com sucesso!');
+        await Campus.update({ nome_campus, imagem_url  }, { where: { id: parseInt(req.params.id) } });
+        res.json('Campus atualizando com sucesso!');
     } catch (error) {
         console.error(`Error: ${error}`);
         res.status(500).json({ message: 'Erro ao atualizar' });
@@ -72,4 +72,4 @@ const atualizarCampi = async (req, res) => {
 
 
 
-module.exports = { criarCampi, criarCampusAquidauana, buscarCampi, buscarCampus, deletarCampi, atualizarCampi };
+module.exports = { criarCampus, criarCampusAquidauana, buscarCampi, buscarCampus, deletarCampus, atualizarCampus };

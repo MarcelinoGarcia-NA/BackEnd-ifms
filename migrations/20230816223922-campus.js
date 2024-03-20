@@ -10,7 +10,7 @@ module.exports = {
         primaryKey: true,
         autoIncrement: true,
       },
-      nome_campi: {
+      nome_campus: {
         type: connection.Sequelize.STRING,
         allowNull: false
       },
