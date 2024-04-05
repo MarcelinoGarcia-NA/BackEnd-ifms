@@ -10,14 +10,8 @@ const port = process.env.PORT || 3003;
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: false }));
 
-const corsOptions = {
-  origin: 'http://localhost:3003', 
-  methods: 'GET,PUT,POST,DELETE',
-  allowedHeaders: 'Content-Type,Authorization',
-  credentials: true, 
-};
 
-app.use(cors(corsOptions));
+app.use(cors());
 
 const routes = require('./routers/routes');
 
